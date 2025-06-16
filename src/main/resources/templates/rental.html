@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add book here</title>
+</head>
+<body>
+<form action="/saveEquipment" method="post" modelAttribute="${equipment}" >
+<table>
+	<tr>
+		<td>Start Date:</td>
+		<td><input name="startDate"></td>
+	</tr>
+	<tr>
+		<td>End Date:</td>
+		<td><input name="endDate"></td>
+	</tr>
+	<tr>
+		<td>Return Date:</td>
+		<td><input name="actualReturnDate"></td>
+	</tr>
+	<tr>
+			<td>Equipments</td>
+			<td>
+				<select name="eId" required>
+				<option th:each="i:${equipment}" th:value="${i.id}" th:text="${i.name}"></option>
+				</select>
+			</td>
+	</tr>
+	<tr>
+		<td>Customer:</td>
+		<td>
+			<select name="cId" required>
+			<option th:each="j:${customer}" th:value="${j.id}" th:text="${j.name}"></option>
+			</select>
+		</td>
+	</tr>
+	</table>
+	<input type="submit" value="Add Rentals">
+
+</form>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Add book here</title>
+</head>
+<body>
+<form action="/saveEquipment" method="post" modelAttribute="${equipment}" >
+<table>
+	<tr>
+		<td>Name:</td>
+		<td><input name="name"></td>
+	</tr>
+	<tr>
+		<td>Description:</td>
+		<td><input name="description"></td>
+	</tr>
+	<tr>
+		<td>Price:</td>
+		<td><input name="rentalPricePerDay"></td>
+	</tr>
+	
+	<tr>
+		<td>Category:</td>
+		<td>
+			<select name="cId" required>
+			<option th:each="j:${category}" th:value="${j.id}" th:text="${j.name}"></option>
+			</select>
+		</td>
+	</tr>
+	</table>
+	<input type="submit" value="Add Equipment">
+
+</form>
+
+</body>
+</html>

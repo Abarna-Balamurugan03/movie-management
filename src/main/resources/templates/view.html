@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h2>Rental List</h2>
+	<table border="1">
+	<tr>
+	<th>Rental Id</th>
+	<th>Start Date</th>
+	<th>End Date</th>
+	<th>Actual Return Date</th>
+	</tr>
+	<tr th:each="i : ${rental}">
+	<td th:text="${i.id}"></td>
+	<td th:text="${i.startDate}"></td>
+	<td th:text="${i.endDate}"></td>
+	<td th:text="${i.actualReturnDate}"></td>
+	
+	</tr>
+	</table>
+	
+<h2>Equipment List</h2>
+	<table border="1">
+	<tr>
+		<th>Equipment Id</th>
+		<th>Name</th>
+		<th>Description</th>
+		<th>Rental Price Per Day</th>
+	</tr>
+	<tr th:each="a:${equipment}">
+	<td th:text="${a.id}"></td>
+	<td th:text="${a.name}"></td>
+	<td th:text="${a.description}"></td>
+	<td th:text="${a.rentalPricePerDay}"></td>
+	<td>
+		<a th:href="@{'/deleteEquipment/'+${a.id}}">Delete</a>
+	</td>
+	</tr>
+	
+	</table>
+
+</body>
+</html>
