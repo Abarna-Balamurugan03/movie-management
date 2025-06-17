@@ -1,0 +1,47 @@
+version: '3.8'
+ 
+services:
+  mysql:
+    image: mysql
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: test
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - springboot-network
+ 
+  rental-system:
+    build: .
+    container_name: rental-system
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: test
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    ports:
+      - "9093:8080"
+    depends_on:
+      - mysql
+    networks:
+      - springboot-network
+    links:
+      - mysql
+ 
+networks:
+  springboot-network:
+ 
+volumes:
+  mysql-data:
+ 
+ 
